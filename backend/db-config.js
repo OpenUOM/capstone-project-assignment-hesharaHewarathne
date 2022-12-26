@@ -1,18 +1,18 @@
-import knex from "knex";
-import { test, development } from "../knexfile";
-import { resetDatabase } from "../backend/test/testBase";
+const knex = require("knex")
+const config = require("../knexfile")
+const testBase = require("../backend/test/testBase");
 
 let db = null
 if (process.env.NODE_ENV === "test") {
   console.log("TEST DB")
-  db = knex(test)
-  resetDatabase(db);
+  db = knex(config.test)
+  testBase.resetDatabase(db);
 } else if (process.env.NODE_ENV === "test-backend") {
   console.log("TEST DB")
-  db = knex(test)
+  db = knex(config.test)
 }else {
   console.log("DEV DB")
-  db = knex(development)
+  db = knex(config.development)
 }
 
-export default db
+module.exports = db

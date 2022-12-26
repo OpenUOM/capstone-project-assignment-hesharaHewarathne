@@ -1,32 +1,34 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { AppServiceService } from "src/app/app-service.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppServiceService } from 'src/app/app-service.service';
 
 @Component({
-  selector: "app-add-new-student",
-  templateUrl: "./add-new-student.component.html",
-  styleUrls: ["./add-new-student.component.css"],
+  selector: 'app-add-new-student',
+  templateUrl: './add-new-student.component.html',
+  styleUrls: ['./add-new-student.component.css']
 })
 export class AddNewStudentComponent implements OnInit {
-  constructor(private service: AppServiceService, private router: Router) {}
 
-  ngOnInit(): void {}
+  constructor(private service : AppServiceService, private router: Router) { }
 
-  createStudent(value: { id: any; name: any; age: any; Hometown: any; }) {
-    const student = {
-      id: value.id,
-      name: value.name,
-      age: value.age,
-      hometown: value.Hometown,
-    };
-
-    this.service.addStudent(student).subscribe(
-      (response: any) => {
-        this.router.navigate(["student - ", response]);
-      },
-      (error: any) => {
-        console.log("ERROR - ", error);
-      }
-    );
+  ngOnInit(): void {
   }
+
+  createStudent(value){
+
+    const student = {
+      id : value.id,
+      name : value.name,
+      age : value.age,
+      hometown : value.Hometown
+    }
+
+
+    this.service.addStudent(student).subscribe((response)=>{
+      this.router.navigate(['student'])
+    },(error)=>{
+      console.log('ERROR - ', error)
+    })
+  }
+
 }

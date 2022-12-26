@@ -24,7 +24,7 @@ const closeConnection = conn => {
   }
 };
 
-export default {
+module.exports = {
   getDbConnection,
   closeConnection
 };

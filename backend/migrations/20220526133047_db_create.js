@@ -1,4 +1,4 @@
-export function up (knex) {
+exports.up = function (knex) {
     return knex.schema
       .createTable("teacher", function (table) {
         table.increments("id").notNullable().primary();
@@ -16,12 +16,12 @@ export function up (knex) {
         table.string("dummyDataOne", 255);
         table.string("dummyDataTwo", 255);
       })
-  }
+  };
   
-  export function down (knex) {
+  exports.down = function (knex) {
     return knex.schema
       .dropTable("teacher")
       .dropTable("student")
       .dropTable("dummyData")
-  }
+  };
   
